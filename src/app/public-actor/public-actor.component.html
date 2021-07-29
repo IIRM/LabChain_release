@@ -1,0 +1,21 @@
+<p id="generalDescription">
+  Public Actor View for experiment # {{experimentId}}
+</p>
+<h4>Received Fees</h4>
+<table class="table">
+  <thead>
+  <tr>
+    <th><i class=".icon-time">Actor</i></th>
+    <th><i class=".icon-shopping-cart">Amount</i> </th>
+    <th><i>Transaction</i></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let transactionToDisplay of transactionFeeData">
+    <td id="payerID">{{transactionToDisplay.payerID}}</td>
+    <td id="amount">{{transactionToDisplay.amount}}</td>
+    <td id="transactionID">{{transactionToDisplay.correspondingTransaction.id}}</td>
+  </tr>
+  <div *ngIf="transactionFeeData.size === 0">No transactions occurred yet</div>
+  </tbody>
+</table>

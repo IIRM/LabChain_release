@@ -1,0 +1,43 @@
+<!--<label class="row-cols-3">-->
+<!--  <label class="container">pending: {{pendingResources}}</label>-->
+<!--  <label class="container">available: {{availableResources}}</label>-->
+<!--  <label class="container">inUse: {{inUseResources}}</label>-->
+<!--</label>-->
+<form [formGroup]="optionForm">
+  <div class="form-group">
+    <label class="col-sm-12">
+      <input type="radio" id="bid" formControlName="offerType" [value]="'bid'" required> Buy
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-12">
+      <input type="radio" id="ask" formControlName="offerType" [value]="'ask'" required> Sell
+    </label>
+  </div>
+  <div class="form-group">
+    <label for="feedInTime">Start</label>
+    <input type="number" class="form-control" id="feedInTime" aria-describedby="fitHelp" placeholder="Feed In Time" formControlName="feedInTime" required>
+    <small id="fitHelp" *ngIf="(!optionForm.get('feedInTime').errors) || optionForm.get('feedInTime').untouched" class="form-text text-muted">The time the feed-in obligation starts</small>
+    <small *ngIf="(optionForm.get('feedInTime').errors) && optionForm.get('feedInTime').touched" class="form-text text-muted">Error: {{optionForm.get('feedInTime').errors.fitIssue}}</small>
+  </div>
+  <div class="form-group">
+    <label for="duration">Duration</label>
+    <input type="number" class="form-control" id="duration" aria-describedby="durationHelp" placeholder="Feed In Duration" formControlName="duration" required>
+    <small id="durationHelp" *ngIf="(!optionForm.get('duration').errors) || optionForm.get('duration').untouched" class="form-text text-muted">How long the power will be fed in</small>
+    <small *ngIf="optionForm.get('duration').errors  && optionForm.get('duration').touched" class="form-text text-muted">Error: {{optionForm.get('duration').errors.durationIssue}}</small>
+  </div>
+  <div class="form-group">
+    <label for="power">Power (kW)</label>
+    <input type="number" class="form-control" id="power" aria-describedby="powerHelp" placeholder="Power (kW)" formControlName="power" step="0.001" required>
+    <small id="powerHelp" *ngIf="(!optionForm.get('power').errors)  || optionForm.get('power').untouched" class="form-text text-muted">How much power will be fed in</small>
+    <small *ngIf="optionForm.get('power').errors  && optionForm.get('power').touched" class="form-text text-muted">Error: {{optionForm.get('power').errors.powerIssue}}</small>
+  </div>
+    <div class="form-group">
+      <label for="price">Price/kWh (tokens)</label>
+      <input type="number" class="form-control" id="price" aria-describedby="priceHelp" placeholder="Price/kW (€)" formControlName="price" required>
+      <small id="priceHelp" *ngIf="(!optionForm.get('price').errors)  || optionForm.get('price').untouched" class="form-text text-muted">For how much every kWh is priceed</small>
+      <small *ngIf="optionForm.get('price').errors  && optionForm.get('price').touched" class="form-text text-muted">Error: {{optionForm.get('price').errors.priceIssue}}</small>
+    </div>
+  <button type="submit" class="btn btn-primary" *ngIf="optionForm.valid && (availableResources > 0)" (click)="submit()">Submit Offer</button>
+</form>

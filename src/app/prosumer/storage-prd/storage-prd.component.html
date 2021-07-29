@@ -1,0 +1,27 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title" (click)="this.showResource = !this.showResource">Storage: {{resource.model}}</h3>
+  </div>
+  <div class="panel-body" *ngIf="showResource">
+    <table class="table">
+      <tr>
+        <td id="storageCap">
+          Max capacity: {{resource.storageCapacity}}
+        </td>
+        <td id="feedinPower">
+          Feedin power: {{resource.feedinPower}}
+        </td>
+      </tr>
+      <tr>
+        <td id="cycleEfficiency">
+          Cycle Efficiency: {{resource.cycleEfficiency}}
+        </td>
+        <td id="feedoutPower">
+          Feedout power: {{resource.feedoutPower}}
+        </td>
+      </tr>
+    </table>
+    <app-canvas-wrapper [resource]="resource"></app-canvas-wrapper>
+    <app-storage-dispatch [asset]="resource" (notifyCanvas)="notifyCanvas()"></app-storage-dispatch>
+  </div>
+</div>

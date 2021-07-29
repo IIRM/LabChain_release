@@ -1,0 +1,51 @@
+<form [formGroup]="retailInteractionForm" (ngSubmit)="submit()">
+    <div class="form-group">
+        <label class="col-sm-12">
+            <input type="radio" id="fit" formControlName="fit"
+                   [value]="true" (click)="updateRetailPlotData()" required> Sell electricity to grid operator
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-12">
+            <input type="radio" id="retail" formControlName="fit"
+                   [value]="false" (click)="updateRetailPlotData()" required> Buy electricity from retailer
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label for="feedInTime">Start</label>
+        <input type="number" class="form-control" id="feedInTime" aria-describedby="fitHelp" placeholder="Feed In Time" formControlName="feedInTime" required>
+        <small id="fitHelp" *ngIf="(!retailInteractionForm.get('feedInTime').errors) || retailInteractionForm.get('feedInTime').untouched" class="form-text text-muted">The time the feed-in obligation starts</small>
+        <small *ngIf="(retailInteractionForm.get('feedInTime').errors) && retailInteractionForm.get('feedInTime').touched" class="form-text text-muted">Error: {{retailInteractionForm.get('feedInTime').errors.fitIssue}}</small>
+    </div>
+    <div class="form-group">
+        <label for="duration">Duration</label>
+        <input type="number" class="form-control" id="duration" aria-describedby="durationHelp" placeholder="Feed In Duration" formControlName="duration" required>
+        <small id="durationHelp" *ngIf="(!retailInteractionForm.get('duration').errors) || retailInteractionForm.get('duration').untouched" class="form-text text-muted">How long the power will be fed in</small>
+        <small *ngIf="retailInteractionForm.get('duration').errors  && retailInteractionForm.get('duration').touched" class="form-text text-muted">Error: {{retailInteractionForm.get('duration').errors.durationIssue}}</small>
+    </div>
+    <div class="form-group">
+        <label for="power">Power (kW)</label>
+        <input type="number" class="form-control" id="power" aria-describedby="powerHelp" placeholder="Power (kW)" step="0.001" formControlName="power" required>
+        <small id="powerHelp" *ngIf="(!retailInteractionForm.get('power').errors)  || retailInteractionForm.get('power').untouched" class="form-text text-muted">How much power will be fed in</small>
+        <small *ngIf="retailInteractionForm.get('power').errors  && retailInteractionForm.get('power').touched" class="form-text text-muted">Error: {{retailInteractionForm.get('power').errors.powerIssue}}</small>
+    </div>
+    <div *ngIf="correspondingResidualLoad"> Uncontracted energy balance at time step {{retailInteractionForm.get('feedInTime').value}}: <span style="font-weight: bold">    {{correspondingResidualLoad}} </span></div>
+    <button type="submit" class="btn btn-primary" *ngIf="retailInteractionForm.valid">{{case}} electricity from retailer for {{transactionValue}}</button>
+</form>
+<div *ngIf="retailInteractionForm.get('fit').value">
+    <h3>Feed-In remuneration for the next {{plotData.length-1}} time steps</h3>
+
+</div>
+<div *ngIf="!retailInteractionForm.get('fit').value">
+    <h3>Retailer electricity price for the next {{plotData.length-1}} time steps</h3>
+</div>
+<div [hidden]="!retailPlot">
+    <canvas #canvas>{{retailPlot}}</canvas>
+</div>
+<div [hidden]="retailPlot">
+    <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading price data...</span>
+    </div>
+</div>

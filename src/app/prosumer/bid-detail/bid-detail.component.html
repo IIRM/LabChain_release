@@ -1,0 +1,22 @@
+<div *ngIf="bid">
+  <div id="bid">
+  <h4>Details for bid {{bid.id}}:</h4>
+  <tr>
+    <td><i>Delivery Time </i></td>
+    <td>{{bid.deliveryTime}}</td>
+  </tr>
+  <tr>
+    <td><i class=".icon-time">Duration </i></td>
+    <td>{{bid.duration}}</td>
+  </tr>
+  <tr>
+    <td><i class=".icon-shopping-cart">Price </i></td>
+    <td>{{bid.price}}</td>
+  </tr>
+  <tr>
+    <td><i>Power</i> </td>
+    <td>{{bid.power}}</td>
+  </tr>
+  <button class="btn btn-info" (click)="purchase()">Sell</button>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<h4>Committed transactions:</h4>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <table class="table">
+      <thead>
+      <tr>
+        <th><i>Role</i></th>
+        <th><i>Delivery Time</i></th>
+        <th><i class=".icon-time">Duration</i></th>
+        <th><i class=".icon-shopping-cart">Price</i> </th>
+        <th><i>Power</i></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr bgcolor="#d3d3d3">
+        <td>Bid(s)</td> <td></td> <td></td> <td></td>
+      </tr>
+      <tr *ngFor="let bidToDisplay of respectiveBids">
+        <td *ngIf="bidToDisplay.optionCreator.respectiveProsumer.id === currentProsumer.respectiveProsumer.id">&rarr;</td>
+        <td *ngIf="bidToDisplay.acceptedParty === currentProsumer.respectiveProsumer.id">	&larr;</td>
+        <td *ngIf="(bidToDisplay.optionCreator.respectiveProsumer.id !== currentProsumer.respectiveProsumer.id) && (bidToDisplay.acceptedParty !== currentProsumer.respectiveProsumer.id)"></td>
+        <td>{{bidToDisplay.deliveryTime}}</td>
+        <td>{{bidToDisplay.duration}} </td>
+        <td>{{bidToDisplay.price}} </td>
+        <td>{{bidToDisplay.power}}</td>
+      </tr>
+      <tr bgcolor="#d3d3d3">
+        <td>Ask(s)</td> <td></td> <td></td> <td></td>
+      </tr>
+      <tr *ngFor="let askToDisplay of respectiveAsks">
+        <td *ngIf="askToDisplay.optionCreator.respectiveProsumer.id === currentProsumer.respectiveProsumer.id">	&larr;</td>
+        <td *ngIf="askToDisplay.acceptedParty === currentProsumer.respectiveProsumer.id">	&rarr;</td>
+        <td *ngIf="(askToDisplay.optionCreator.respectiveProsumer.id !== currentProsumer.respectiveProsumer.id) && (askToDisplay.acceptedParty !== currentProsumer.respectiveProsumer.id)"></td>
+        <td>{{askToDisplay.deliveryTime}}</td>
+        <td>{{askToDisplay.duration}} </td>
+        <td>{{askToDisplay.price}} </td>
+        <td>{{askToDisplay.power}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

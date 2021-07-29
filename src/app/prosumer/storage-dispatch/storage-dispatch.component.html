@@ -1,0 +1,13 @@
+<form [formGroup]="scheduledDispatchForm">
+  <div class="form-group">
+    <label for="scheduledDispatch">Scheduled Storage management for time step </label>
+    <input type="number" id="timeStepStorageDispatch" class="form-control" formControlName="timeStep" (change)="adjustSlider()">
+    <small *ngIf="(scheduledDispatchForm.get('timeStep').errors) && !(scheduledDispatchForm.get('scheduledDispatch').pristine)" class="form-text text-muted">Error: {{scheduledDispatchForm.get('timeStep').errors.timeStepError}}</small>
+    <div *ngIf="correspondingResidualLoad"> Uncontracted energy balance at time step {{scheduledDispatchForm.get('timeStep').value}}<span style="font-weight: bold">  {{correspondingResidualLoad}}</span> </div>
+    <button *ngIf="correspondingResidualLoad && ((correspondingResidualLoad + asset.powerSeries[scheduledDispatchForm.get('timeStep').value])>=0)" (click)="fulfillResidualLoad()">Fulfill residual load</button>
+    <input type="range" *ngIf="scheduledDispatchForm.get('timeStep').dirty" min="{{maxDischarge}}" max="{{maxCharge}}" step="0.01" class="form-control" id="scheduledDispatch" aria-describedby="scheduledDispatchHelp" formControlName="scheduledDispatch">
+    <p *ngIf="scheduledDispatchForm.get('timeStep').dirty">selected storage (dis)charge value: {{scheduledDispatchForm.get('scheduledDispatch').value}}<p>
+    <small *ngIf="scheduledDispatchForm.get('timeStep').dirty" id="scheduledDispatchHelp" class="form-text text-muted">The amount of electricity fed into the storage or taken out</small>
+    <button *ngIf="(scheduledDispatchForm.get('scheduledDispatch').dirty) && !(scheduledDispatchForm.get('timeStep').errors)" id="scheduleButton" (click)="scheduleTimeStep()" style="float: right;">Schedule!</button>
+  </div>
+</form>

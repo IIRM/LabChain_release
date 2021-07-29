@@ -1,0 +1,23 @@
+<h1>Welcome!</h1>
+<h4>Please insert code for experiment participation</h4>
+
+<div>
+  <input [(ngModel)]="loginCode" placeholder="Insert login code">
+</div>
+<div class="row">
+  <div class="col-">
+    <button (click)="login()" class="btn btn-lg btn-primary participation-button" name="ParticipationButton" id="ParticipationButton">Participate</button>
+  </div>
+  <span></span>
+<!--  <div class="col-">-->
+<!--    <button (click)="loginWCode('1_1_Prosumer_311')" class="btn btn-lg btn-primary" id="ProsumerLoginButton">Login 1_1_Prosumer_311</button>-->
+<!--  </div>-->
+<!--  <div class="col-">-->
+<!--    <button (click)="loginWCode('1_1_Prosumer_312')" class="btn btn-lg btn-primary" id="ProsumerLoginButton2">Login 1_1_Prosumer_312</button>-->
+<!--  </div>-->
+<!--  <div class="col-">-->
+<!--    <button (click)="loginWCode('10_ExperimentDesigner')" class="btn btn-lg btn-primary" id="ExperimentDesignerLoginButton">Login 10_ExperimentDesigner</button>-->
+<!--  </div>-->
+</div>
+{{errorCode}}
+<!--<button (click)="storeDefaultExperiment()">StoreExp</button>-->

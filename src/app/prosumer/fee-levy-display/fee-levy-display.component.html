@@ -1,0 +1,35 @@
+<h4>Aggregated fees and levies over the course of the simulation: {{aggregatedFees}}</h4>
+Fees from trading: {{tradingFeeSum}}
+<table class="table">
+  <thead>
+  <tr>
+    <th><i>Delivery Time</i></th>
+    <th><i>Value</i></th>
+    <th><i class=".icon-shopping-cart">Fee</i> </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let feeToDisplay of respectiveTransactionFees">
+    <td>{{feeToDisplay.correspondingTransaction.deliveryTime}}</td>
+    <td>{{feeToDisplay.correspondingTransaction.price * feeToDisplay.correspondingTransaction.power * feeToDisplay.correspondingTransaction.duration}} </td>
+    <td>{{feeToDisplay.amount}} </td>
+  </tr>
+  </tbody>
+</table>
+Fees from inbalance: {{inbalanceFeeSum}}
+<table class="table">
+  <thead>
+  <tr>
+    <th><i>Time Step</i></th>
+    <th><i>Inbalance (kWh)</i></th>
+    <th><i>Incurred Fee</i> </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let feeToDisplay of inbalanceFees">
+    <td>{{feeToDisplay.timeStep}}</td>
+    <td>{{feeToDisplay.inbalancePower}} </td>
+    <td>{{feeToDisplay.inbalancePaid}} </td>
+  </tr>
+  </tbody>
+</table>

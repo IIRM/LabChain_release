@@ -1,0 +1,23 @@
+<form [formGroup]="p2pMarketForm">
+    <div class="form-group">
+        <label class="col-sm-12">
+            <input type="radio" id="ask" formControlName="ask"
+                   [value]="true" (click)="selectTrade('ask')"> Buy electricity
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-12">
+            <input type="radio" id="retail" formControlName="bid"
+                   [value]="true" (click)="selectTrade('bid')"> Sell electricity
+        </label>
+    </div>
+
+    <div *ngIf="this.selectedTradeDirection === 'ask'">
+        <app-ask-view></app-ask-view>
+    </div>
+
+    <div *ngIf="this.selectedTradeDirection === 'bid'">
+        <app-bid-view></app-bid-view>
+    </div>
+</form>

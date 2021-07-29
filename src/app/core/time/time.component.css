@@ -1,0 +1,7 @@
+.stickyProgressBar{
+    position: fixed;
+    top: 0;
+    overflow: visible;
+    z-index: 10;
+    width: 100%;
+}

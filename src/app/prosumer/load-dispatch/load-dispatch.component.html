@@ -1,0 +1,11 @@
+<form [formGroup]="scheduledDispatchForm">
+  <div class="form-group">
+    <label for="scheduledDispatch">Scheduled Load management for time step </label>
+    <input type="number" min="{{getCurrentTime()}}" max="{{getEndTime()}}" id="timeStepLoadDispatch" class="form-control" formControlName="timeStep" (change)="adjustSlider()">
+    <small *ngIf="(scheduledDispatchForm.get('timeStep').errors) && !(scheduledDispatchForm.get('scheduledDispatch').pristine)" class="form-text text-muted">Error: {{scheduledDispatchForm.get('timeStep').errors.timeStepError}}</small>
+    <input *ngIf="scheduledDispatchForm.get('timeStep').dirty" type="range" max="{{maxLoad}}" min="{{minLoad}}" step="0.01" class="form-control" id="scheduledDispatch" aria-describedby="scheduledDispatchHelp" formControlName="scheduledDispatch">
+    <p *ngIf="scheduledDispatchForm.get('timeStep').dirty">selected load value: {{scheduledDispatchForm.get('scheduledDispatch').value}}</p>
+    <small *ngIf="scheduledDispatchForm.get('timeStep').dirty" id="scheduledDispatchHelp" class="form-text text-muted">The scheduled load value for the asset</small>
+    <button *ngIf="(scheduledDispatchForm.get('scheduledDispatch').dirty) && !(scheduledDispatchForm.get('timeStep').errors)" id="scheduleButton" (click)="scheduleTimeStep()" style="float: right;">Schedule!</button>
+  </div>
+</form>

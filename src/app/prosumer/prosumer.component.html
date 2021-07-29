@@ -1,0 +1,59 @@
+<div class="well">
+  <div class="row">
+    <div class="col">
+      <div *ngIf="prosumer">
+        You are Prosumer {{prosumer.name}} with the id {{prosumer.id}}.
+      </div>
+      <div *ngIf="experimentId">
+        You are participating in experiment {{experimentId}}.
+      </div>
+      <!--div *ngIf="readyButton">
+        <button (click)="signalReadyness()">Ready?</button>
+      </div-->
+    </div>
+  </div></div>
+<div class="row">
+  <div class="col-md-7">
+    <div class="panel panel-primary">
+      <app-residual-load [prosumerObservable]="prosumerInstance"></app-residual-load>
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading" (click)="this.showPRD = !this.showPRD">
+        <h3 class="panel-title">Persistent Resource Display</h3>
+      </div>
+      <div *ngIf="showPRD" class="panel-body">
+        <app-persistent-resource-display [prosumerInstanceObservable]="prosumerInstance"></app-persistent-resource-display>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <div class="panel panel-primary">
+      <div class="panel-heading" (click)="this.showP2PEditor = !this.showP2PEditor">
+        <h3 class="panel-title">P2P Option Editor</h3>
+      </div>
+      <div *ngIf="this.showP2PEditor" class="panel-body">
+        <app-p2p-bid-editor></app-p2p-bid-editor>
+      </div>
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading" (click)="this.showMarketView = !this.showMarketView">
+        <h3 class="panel-title">Market View</h3>
+      </div>
+      <div *ngIf="this.showMarketView" class="panel-body">
+        <app-market-view [prosumerInstanceObservable]="prosumerInstance"></app-market-view>
+      </div>
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading" (click)="this.showFeeLevy = !this.showFeeLevy">
+        <h3 class="panel-title">Fee & Levy View</h3>
+      </div>
+      <div *ngIf="this.showFeeLevy" class="panel-body">
+        <app-fee-levy-display [piObservable]="prosumerInstance"></app-fee-levy-display>
+      </div>
+    </div>
+
+  </div>
+  {{recordedData}}
+  {{residualLoadActivity}}
+</div>
+

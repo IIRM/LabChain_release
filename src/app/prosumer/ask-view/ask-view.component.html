@@ -1,0 +1,65 @@
+<h4>Relevant Asks:</h4>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="panel panel-default">
+      <form [formGroup]="askFilterForm" class="range-field my-4 w-25">
+        <div class="form-group">
+          <label for="maxPrice">Maximum price</label>
+          <input id="maxPrice" type="range" min="0" [attr.max]="marketMaxPrice" defaultValue="marketMaxPrice" class="form-control" id="maxPrice" aria-describedby="maxPriceHelp" formControlName="maxPrice" (change)="latestChangeSlider = 'maxPrice'">{{askFilterForm.get('maxPrice').value}}
+          <small id="maxPriceHelp" class="form-text text-muted">The maximum price willing to pay</small>
+        </div>
+        <div class="form-group">
+          <label for="minFeedOutTime">Minimal feed-out-time</label>
+          <input id="minFeedOutTime" type="range" [attr.min]="getCurrentTime()" [attr.max]="getEndTime()" defaultValue="getCurrentTime()" class="form-control" id="minFeedOutTime" aria-describedby="minFeedOutTimeHelp" formControlName="minFeedOutTime" (change)="latestChangeSlider = 'minFeedOutƒTime'">{{askFilterForm.get('minFeedOutTime').value}}
+          <small id="minFeedOutTimeHelp" class="form-text text-muted">The earliest time of the feed in</small>
+        </div>
+        <div class="form-group">
+          <label for="maxFeedOutTime">Maximum feed-out-time</label>
+          <input id="maxFeedOutTime" type="range"[attr.min]="getCurrentTime()" [attr.max]="getEndTime()" defaultValue="getEndTime()" class="form-control" id="maxFeedOutTime" aria-describedby="maxFeedOutTimeHelp" formControlName="maxFeedOutTime" (change)="latestChangeSlider = 'maxFeedOutTime'">{{askFilterForm.get('maxFeedOutTime').value}}
+          <small id="maxFeedOutTimeHelp" class="form-text text-muted">The latest time of the feed in</small>
+        </div>
+        <div class="form-group">
+          <label for="minDuration">Minimal duration</label>
+          <input id="minDuration" type="range" min="1" [attr.max]="maxDuration" class="form-control" id="minDuration" aria-describedby="minDurationHelp" formControlName="minDuration" (change)="latestChangeSlider = 'minDuration'">{{askFilterForm.get('minDuration').value}}
+          <small id="minDurationHelp" class="form-text text-muted">The minimal time electricity is fed in</small>
+        </div>
+        <div class="form-group">
+          <label for="maxDuration">Maximum duration</label>
+          <input id="maxDuration" type="range" min="1" [attr.max]="maxDuration" defaultValue="48" class="form-control" id="maxDuration" aria-describedby="maxDurationHelp" formControlName="maxDuration" (change)="latestChangeSlider = 'maxDuration'">{{askFilterForm.get('maxDuration').value}}
+          <small id="maxDurationHelp" class="form-text text-muted">The maximal time electricity is fed in</small>
+        </div>
+        <div class="form-group">
+          <label for="minPower">Minimal power</label>
+          <input id="minPower" type="range" [attr.min]="p2pMarketDesign.minBidSize" [attr.max]="maxAskSize" defaultValue="p2pMarketDesign.minBidSize"  class="form-control" id="minPower" aria-describedby="minPowerHelp" formControlName="minPower" (change)="latestChangeSlider = 'minPower'">{{askFilterForm.get('minPower').value}}
+          <small id="minPowerHelp" class="form-text text-muted">The minimal time electricity is fed in</small>
+        </div>
+        <div class="form-group">
+          <label for="maxPower">Maximum power</label>
+          <input id="maxPower" type="range" [attr.min]="p2pMarketDesign.minBidSize" [attr.max]="maxAskSize" defaultValue="maxAskSize" class="form-control" id="maxPower" aria-describedby="maxPowerHelp" formControlName="maxPower" (change)="latestChangeSlider = 'maxPower'">{{askFilterForm.get('maxPower').value}}
+          <small id="maxPowerHelp" class="form-text text-muted">The maximal time electricity is fed in</small>
+        </div>
+      </form>
+    </div>
+    <table class="table">
+      <thead>
+      <tr>
+        <th><i>Delivery Time</i></th>
+        <th><i class=".icon-time">Duration</i></th>
+        <th><i class=".icon-shopping-cart">Price</i> </th>
+        <th><i>Power</i></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr id="asks" *ngFor="let askToDisplay of relevantAsks" [ngStyle]="askStyle(askToDisplay)" (click)="setSelectedAsk(askToDisplay)">
+        <td>{{askToDisplay.deliveryTime}}</td>
+        <td>{{askToDisplay.duration}} </td>
+        <td>{{askToDisplay.price}} </td>
+        <td>{{askToDisplay.power}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="panel panel-default" *ngIf="selectedAsk">
+  <app-ask-detail *ngIf="!(selectedAsk.optionCreator.respectiveProsumer.id === this.sessionData.currentProsumer.respectiveProsumer.id)" [ask]="selectedAsk" (removeComponent)="resetAsk()"></app-ask-detail>
+</div>

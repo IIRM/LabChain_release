@@ -1,0 +1,17 @@
+<form [formGroup]="canvasForm">
+    <table class="table">
+        <tr class="form-group">
+            <td>
+                <input type="radio" id="rlcomplete" formControlName="partial"
+                   [value]="false" (click)="changeCase()" required> Complete power series
+            </td>
+            <td>
+                <input type="radio" id="rlpartial" formControlName="partial"
+                   [value]="true" (click)="changeCase()" required> Next {{maxLength}} time steps
+            </td>
+        </tr>
+    </table>
+</form>
+<div>
+    <canvas #canvas height="100">{{loadChart}}</canvas>
+</div>

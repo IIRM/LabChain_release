@@ -1,0 +1,7 @@
+.sticky{
+    position: fixed;
+    top: 2rem;
+    overflow: visible;
+    z-index: 10;
+    height: 100px;
+}

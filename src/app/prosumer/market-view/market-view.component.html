@@ -1,0 +1,31 @@
+<p *ngIf="prosumerInstance">
+  Tokens: {{prosumerInstance.amountTokens}}
+</p>
+<div class="row">
+  <div class="col-md" style="width: 98%;">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h5 class="panel-title" (click)="selected='externalMarket'">Trade with retailer</h5>
+      </div>
+      <div *ngIf="selected === 'externalMarket'" class="panel-body">
+        <app-external-market-view></app-external-market-view>
+      </div>
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h5 class="panel-title" (click)="selected='p2pMarket'">Trade with peers</h5>
+      </div>
+      <div *ngIf="selected === 'p2pMarket'" class="panel-body">
+        <app-p2p-market-view></app-p2p-market-view>
+      </div>
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h5 class="panel-title" (click)="selected='transactions'">Committed Transactions</h5>
+      </div>
+      <div *ngIf="selected === 'transactions'" class="panel-body">
+        <app-committed-transactions></app-committed-transactions>
+      </div>
+    </div>
+  </div>
+</div>
