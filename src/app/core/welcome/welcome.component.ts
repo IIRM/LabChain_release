@@ -1,12 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SessionManagerService} from "../session-manager.service";
-import {BlockchainInterfaceSetupService} from "../blockchainInterface/blockchain-interface-setup.service";
-import {HttpClient} from "@angular/common/http";
-import {BlockchainHelperService} from "../blockchainInterface/blockchain-helper.service";
-import {SessionDataService} from "../session-data.service";
-import {LabchainDatabase} from "../../researcher/LabchainDatabase";
-import {MockEDMService} from "../mockStorageInterfaces/mock-edm.service";
-
+import { SessionManagerService } from "../session-manager.service";
 
 @Component({
   selector: 'app-welcome',
@@ -24,12 +17,7 @@ export class WelcomeComponent implements OnInit {
   /** Variable to hold a potentially relevant error code */
   errorCode = '';
 
-  constructor(private session: SessionManagerService,
-              private http: HttpClient,
-              private bcHelper: BlockchainHelperService,
-              private data: SessionDataService,
-              private database: LabchainDatabase,
-              private mockEDM: MockEDMService) {  }
+  constructor(private session: SessionManagerService) {  }
 
   ngOnInit() {  }
 
@@ -45,25 +33,7 @@ export class WelcomeComponent implements OnInit {
     if (this.loginCode === undefined) {
       throw new Error('invalid login information');
     }
-    this.session.loadSessionData(this.loginCode, false, true);
-  }
-
-  /**
-   * Method to let the respective agent login with a given code, by setting the code automatically and referring to the respective login method
-   *
-   * @param code The login code the client uses
-   */
-  loginWCode(code: string): void {
-    this.loginCode = code;
-    this.login();
-  }
-
-  storeDefaultExperiment() {
-    console.log('clicked');
-    this.database.getDefaultExperiment().then(experiment => {
-      console.log('experiment retrieved');
-      this.mockEDM.storeExperimentDescription(experiment);
-      this.mockEDM.storeExperimentInstance(experiment, 1, 1);
-    });
+    // set mockModeBlockchain to false if there is a Blockchain set up for this again!
+    this.session.loadSessionData(this.loginCode, true, true);
   }
 }

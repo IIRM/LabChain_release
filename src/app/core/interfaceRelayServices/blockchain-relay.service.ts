@@ -52,6 +52,7 @@ export class BlockchainRelayService implements BlockchainInterface{
         });
         break;
       case 'mockChain':
+        console.log("mockChain");
         this.mockChain.committedAskSubject.subscribe(committedAsks => {
           this.committedAskSubject.next(committedAsks);
         });
@@ -68,7 +69,6 @@ export class BlockchainRelayService implements BlockchainInterface{
         break;
     }
   }
-
 
   commitToP2PAsk(askToCommitTo: P2POption): boolean {
     this.askCommitmentIntention.next(askToCommitTo);

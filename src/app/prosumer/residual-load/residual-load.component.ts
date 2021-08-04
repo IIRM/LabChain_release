@@ -145,6 +145,9 @@ export class ResidualLoadComponent implements OnInit, AfterViewInit {
         animation: {
           duration: 0
         },
+        legend: {
+          display: false
+        },
         scales: {
           x: {
             title: {
@@ -173,6 +176,9 @@ export class ResidualLoadComponent implements OnInit, AfterViewInit {
       options: {
         animation: {
           duration: 0
+        },
+        legend: {
+          display: false
         },
         scales: {
           x: {

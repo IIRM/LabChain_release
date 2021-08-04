@@ -15,13 +15,13 @@ import { TimeService } from '../../core/time.service';
 export class CanvasWrapperComponent implements AfterViewInit {
 
   /** The respective asset to detail in the view */
-  @Input() resource!: DispatchableAsset | NonControllableGenerator;
+  @Input() resource: DispatchableAsset | NonControllableGenerator;
   /** The chart element that comprises the visualization information used in the canvas for diplaying the load */
-  public loadChart: Chart | undefined;
+  loadChart: Chart;
   /** The element ref element that visualizes the information about the time series of the respective load */
-  @ViewChild('canvas', {static: false}) canvas: ElementRef | undefined;
+  @ViewChild('canvas', {static: false}) canvas: ElementRef;
   /** The array containing the time series the is plotted and can be the full residual load time series or just a chunk of it */
-  public plotData: number[] = [];
+  public plotData = [];
   /** The maximum length of the 2 days ahead plot data */
   public maxLength = 48;
   /** The form for radio button selection */
@@ -50,8 +50,8 @@ export class CanvasWrapperComponent implements AfterViewInit {
       this.loadChart.destroy();
     }
     this.calculateMaxLength();
-    let i: number;
-    if (this.canvasForm.get('partial')!.value) {
+    let i;
+    if (this.canvasForm.get('partial').value) {
       i = this.timeService.getCurrentTime();
       this.plotData = Object.assign([], this.resource.powerSeries.slice(this.timeService.getCurrentTime(), this.timeService.getCurrentTime() + this.maxLength + 1));
     } else {
@@ -59,7 +59,7 @@ export class CanvasWrapperComponent implements AfterViewInit {
       this.plotData = Object.assign([], this.resource.powerSeries);
       this.plotData[0] = NaN;
     }
-    this.loadChart = new Chart((this.canvas!.nativeElement as HTMLCanvasElement).getContext('2d')!, {
+    this.loadChart = new Chart((this.canvas.nativeElement as HTMLCanvasElement).getContext('2d'), {
       type: 'line',
       data: {
         labels: this.plotData.map(() => (i++)),
@@ -72,20 +72,24 @@ export class CanvasWrapperComponent implements AfterViewInit {
         animation: {
           duration: 0
         },
-        scales: {
-          x: {
-            title: {
-              display: true,
-              text: 'time step'
-            }
-          },
-          y: {
-            title: {
-              display: true,
-              text: 'price (ct/kWh)'
-            }
-          }
+        legend: {
+          display: false
         },
+        scales: {
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'time step'
+            }
+          }],
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'power consumption (kW)'
+            }
+          }]
+        },
+        labelString: 'Power consumption of resource'
       }
     });
     this.cd.detectChanges();

@@ -38,10 +38,9 @@ export class SessionManagerService {
    * Function to retrieve the relevant data for the experiment and set up the respective services.
    * Loads data from the EDM and only when the prosumer is retrieved connects to the blockchain interface
    * @param loginString String to contain the experiment ID, experiment instance ID, role and prosumer ID separated by _
-   * @param mockModeBlockchain TODO!
+   * @param mockModeBlockchain Boolean that indicates whether a blockchain is used or the data stored in firestore
    * @param mockModeEDM if mockMode is active, data is pulled from the (internal) database instead of the EDM platform
    */
-  //TODO revise according to the roles; determine what components to include for what roles and probably do the routing first
   public loadSessionData(loginString: string, mockModeBlockchain: boolean, mockModeEDM: boolean){
     //experiment code format: ExperimentID_ExperimentInstanceID_role_ProsumerID
     const experimentData = loginString.split('_');
@@ -66,7 +65,7 @@ export class SessionManagerService {
         });
       }
     } else {
-      this.edmConnector.acquireRTPToken().then(edmToken => {
+      this.edmConnector.acquireRTPToken().then(() => {
         if(mockModeEDM) {
           if (experimentID) {
             this.edmConnector.loadExperimentDescription(experimentID).then(experimentDescription => {
@@ -76,7 +75,6 @@ export class SessionManagerService {
             });
           }
         }
-        // this.loadEDMData(experimentData[0], experimentData[1], experimentData[3]);
       });
     }
     console.log('EDM layer set up');
@@ -86,7 +84,6 @@ export class SessionManagerService {
     //set up EDM layer
     if (mockModeEDM) {
       if (experimentID) {
-        //TODO for convenience, remove eventually
         this.mockEDM.loadExperimentDescription(experimentID).then(experimentDescription => {
           if (experimentInstanceID) {
             this.mockEDM.loadExperimentInstance(experimentInstanceID, experimentDescription).then(experimentInstance => {
@@ -100,7 +97,7 @@ export class SessionManagerService {
         });
       }
     } else {
-      this.edmConnector.acquireRTPToken().then(edmToken => {
+      this.edmConnector.acquireRTPToken().then(() => {
         if (experimentID) {
           this.edmConnector.loadExperimentDescription(experimentID).then(experimentDescription => {
             if (experimentInstanceID) {

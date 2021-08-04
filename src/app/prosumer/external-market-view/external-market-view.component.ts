@@ -117,6 +117,9 @@ export class ExternalMarketViewComponent implements OnInit, AfterViewInit {
         }]
       },
       options: {
+        legend: {
+          display: false
+        },
         scales: {
           x: {
             title: {
