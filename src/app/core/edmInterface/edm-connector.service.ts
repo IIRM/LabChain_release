@@ -16,7 +16,6 @@ import {EDMInterface} from "../data-types/interfaces";
  * Makes use of the EDM helper for managing static data and outsource certain retrieval and storage functionality.
  */
 export class EdmConnectorService implements EDMInterface{
-  //TODO document service properly when storage and retrieval functionality is settled
   private rtpToken;
   constructor(private http: HttpClient,
               private edmHelper: EDMHelperService) {
@@ -53,20 +52,16 @@ export class EdmConnectorService implements EDMInterface{
       graph: '{ ' + distributionString + datasetString + '}',
       dataset: 'secondTest'
     }).subscribe(res => {
-      // TODO do something with the object to store
       console.log(res);
     });
   }
-  //TODO fill in
   public loadExperimentDescription(id: string): Promise<ExperimentDescription>{
     const experimentDescriptionPromise = this.edmHelper.retrieveExperimentDescription('https://piveau-ui-windnode.apps.osc.fokus.fraunhofer.de/datasets/experimentdescription1');
     return experimentDescriptionPromise;
   }
-//TODO fill in
   public loadExperimentInstance(id: string, respectiveExperiment: ExperimentDescription){
     return this.edmHelper.retrieveExperimentInstance('');
   }
-  //TODO fill in
   storeExperimentDescription(experiment: ExperimentDescription, prosumerInstances: Map<number, ProsumerInstance>) {
     const keywords: Map<string, string[]> = new Map<string, string[]>();
     keywords.set('en', ['LabChain data', 'Experiment set', 'experiment data']);
@@ -91,12 +86,10 @@ export class EdmConnectorService implements EDMInterface{
       experimentLength: experiment.experimentLength,
       id: experiment.id
     };
-    //TODO use different methods to construct the respective strings in order to provide context-specific data to the EDM
     const distributionString = this.edmHelper.constructDistributionString(experiment.description, 'Distribution for experiment ' + experiment.id);
     const datasetString = this.edmHelper.constructDataSetString(experiment.description, 'Dataset for experiment ' + experiment.id, keywords);
     this.storeData(distributionString, datasetString, experimentDescriptionObject);
   }
-  //TODO fill in
   storeExperimentInstance(instanceOf: ExperimentDescription, tickLength: number, instanceID: number) {
     const keywords: Map<string, string[]> = new Map<string, string[]>();
     keywords.set('en', ['LabChain data', 'Experiment instance', 'experiment data']);
@@ -105,30 +98,14 @@ export class EdmConnectorService implements EDMInterface{
       instanceOfExperiment: instanceOf,
       experimentLength: tickLength
     };
-    //TODO use different methods to construct the respective strings in order to provide context-specific data to the EDM
     const distributionString = this.edmHelper.constructDistributionString('Instance ' + experimentInstanceObject.experimentId + ' of the experiment with the following description:\n' + instanceOf.description, 'Distribution for experiment instance ' + experimentInstanceObject.experimentId);
     const datasetString = this.edmHelper.constructDataSetString('Instance ' + experimentInstanceObject.experimentId + ' of the experiment with the following description:\n' + instanceOf.description, 'Dataset for experiment instance ' + experimentInstanceObject.experimentId, keywords);
     this.storeData(distributionString, datasetString, experimentInstanceObject);
   }
 
-  //TODO define prosumer behavior data
-  // storeProsumerBehaviorData(currentProsumer: Prosumer, experimentInstance: ExperimentInstance, prosumerBehaviorData: Object) {
-  //   const keywords: Map<string, string[]> = new Map<string, string[]>();
-  //   keywords.set('en', ['LabChain data', 'Prosumer data', 'experiment data']);
-  //   const experimentalData: ProsumerExperimentData = {
-  //     respectiveProsumer: currentProsumer,
-  //     experimentInstance: experimentInstance,
-  //     prosumerBehaviorData: prosumerBehaviorData
-  //   };
-  //   //TODO use different methods to construct the respective strings in order to provide context-specific data to the EDM
-  //   const distributionString = this.edmHelper.constructDistributionString('Experimental data for prosumer ' + currentProsumer.id + ' in experiment instance ' + experimentInstance.experimentID, 'Distribution ' + currentProsumer.id + '-' + experimentInstance.experimentID);
-  //   const datasetString = this.edmHelper.constructDataSetString('Dataset for describing experimental data for prosumer ' + currentProsumer.id + ' in experiment instance ' + experimentInstance.experimentID, 'Dataset ' + currentProsumer.id + '-' + experimentInstance.experimentID, keywords);
-  //   this.storeData(distributionString, datasetString, experimentalData);
-  // }
   initializeDataProvisionService(experimentId: number, prosumerId: number){}
 
   recordData(experimentInstance: ExperimentInstance, prosumerInstance: ProsumerInstance){
-    //TODO think about storing data when data set structure more clear
   }
 }
 

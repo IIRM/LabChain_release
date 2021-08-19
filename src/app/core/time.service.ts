@@ -58,7 +58,6 @@ export class TimeService {
     } else {
       this.experimentRunning = true;
       if (this.timeRegime === TimeRegime.DISCRETE) {
-        //TODO take from experiment description (external data), not the internal database
         this.discretePeriodicEmittance(this.database.getTimeStepLength());
       } else if (this.timeRegime === TimeRegime.CONTINUOUS) {
         this.continuousPeriodicEmittance(this.database.getAccellerationFactor());
@@ -84,7 +83,6 @@ export class TimeService {
       this.endExperiment();
     } else {
       throw new Error('the experiment ends before taking' + amount + ' time steps!');
-      // TODO end experiment
     }
   }
 

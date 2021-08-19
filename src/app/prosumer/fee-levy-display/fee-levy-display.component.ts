@@ -38,7 +38,6 @@ export class FeeLevyDisplayComponent implements OnInit {
               private session: SessionDataService) {
     this.respectiveTransactionFees = new Array<TransactionFeeEntry>();
     this.inbalanceFees = new Array<InbalanceFee>();
-    //TODO check if the inbalance needs to be a more complex object with a reference to the time step
     this.residualLoad.inbalanceEmitter.subscribe(rawInbalance => {
       if(!isNaN(rawInbalance) && !isNaN(this.session.experimentInstance.instanceOfExperiment.inbalancePenalty[this.timeService.getCurrentTime() - 1])) {
         const currentInbalance = Math.floor(Math.abs(rawInbalance) * 10) / 10.0;

@@ -11,6 +11,6 @@ export class ExperimentInstance {
   experimentID: number;
   /** The respective experiment blue print the experiment is based upon */
   instanceOfExperiment: ExperimentDescription;
-  //TODO document and include
+  /** The length of a time slice during the experiment*/
   tickLength?: number;
 }

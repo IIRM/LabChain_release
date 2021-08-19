@@ -96,8 +96,6 @@ export class FeedInObligationDisplayComponent implements OnInit {
     this.loadGraph();
   }
 
-  // TODO include a cd listener that updates the nextFIT based on the progress of time based on the respective TimeService
-
   /**
    * Method to load the graph / chart as a HTMLCanvasELement
    * Specifies the parameters for displaying the respective time series to display and triggers the change detection after setting up the graph

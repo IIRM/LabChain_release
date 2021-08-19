@@ -30,9 +30,6 @@ export class StoragePRDComponent implements OnInit {
   ngOnInit() {
     this.currentSOC = this.resource.powerSeries[0];
     this.timeService.timeEmitter.subscribe(timeUpdate => {
-      // console.log('Storage ' + this.resource.model + ' receives time update: ' + timeUpdate);
-      // TODO check assumption
-      // could be undefined, but the idea is that if its undefined it will be hidden, so this is intentional
       this.currentSOC = this.resource.powerSeries[timeUpdate];
     });
   }

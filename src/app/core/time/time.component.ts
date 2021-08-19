@@ -64,8 +64,6 @@ export class TimeComponent implements OnInit, AfterViewInit {
     this.timeService.timeEmitter.subscribe(newTime => {
       this.experimentTime = newTime;
       this.progress = this.experimentTime / this.experimentLength;
-      // TODO find better way for updating date than this
-      // this.dateView = new Date(0, 0, 0, 0, 0, 0, 0);
       this.dateView.setSeconds(newTime);
     });
     // Set the time regime the simulation is configured with

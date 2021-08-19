@@ -62,7 +62,6 @@ export class OfferWatcherService {
     }
     //Wait until all promises are resolved
     Promise.all(promiseSet).then(timeframesOfferResponseArray => {
-      //TODO check if the valuePromiseSet adds something or if the promiseSet would work just as well
       let valuePromiseSet: Array<Promise<Object>> = new Array<Promise<Object>>();
       this.logger.watcherLog('All ' + promiseMap.size + ' promises resolved in offer watch cycle', 3);
       let rawOfferMap: Map<number, Array<RawOffer>> = new Map<number, Array<RawOffer>>();
@@ -73,7 +72,6 @@ export class OfferWatcherService {
           const currentRawOffers: Array<RawOffer> = new Array<RawOffer>();
           this.logger.watcherLog('Response for timestep ' + key, 4);
           this.logger.watcherLog(currentOfferResponse.toString(), 4);
-          //TODO check why the bids are not set in the rawOfferMap to begin with
           if (currentOfferResponse.hasOwnProperty("bids")) {
             currentOfferResponse['bids'].forEach(currentRawOffer => {
               currentRawOffers.push(currentRawOffer);

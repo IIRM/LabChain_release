@@ -75,7 +75,7 @@ export class BlockchainOfferProcessorService {
     this.P2PBidStream.next(bidOffers);
     this.resourceInUseStream.next(resourcesInUse);
   }
-  //TODO could be optimized by cutting out the BlockchainOffer intermediary representation
+
   /**
    * Function to transform map of RawOffers into a map of BCOffers (primarily by selecting on offer type) and to filter them based on whether they belong to a resource used in the experiment
    * @params Map with the time steps of interest (simulation time) and the the array of RawOffers starting at this time step

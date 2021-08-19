@@ -200,7 +200,6 @@ export class MockEDMService implements EDMInterface {
                         instanceOfExperiment: respectiveExperiment,
                         tickLength: Number.parseInt(experimentInstance.docs[0].data()['tickLength'])
                     });
-                    //TODO if experiment instance doesn't exist, resort to default
                 } else {
                     resolve({
                         experimentID: Number.parseInt(id),
@@ -212,11 +211,9 @@ export class MockEDMService implements EDMInterface {
         });
     }
 
-    //TODO implement when experiment data specification is coordinated
     recordData(experimentInstance: ExperimentInstance, prosumerInstance: ProsumerInstance) {
     }
 
-    //TODO irrelevant with the mock interface
     storeData(distributionString: string, datasetString: string, objectToStore: object) {
         console.log(objectToStore);
         this.db.collection('experimentResults-test').doc(distributionString).set(objectToStore);

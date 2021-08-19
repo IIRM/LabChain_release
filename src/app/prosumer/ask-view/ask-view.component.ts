@@ -87,10 +87,6 @@ export class AskViewComponent implements OnInit {
           this.marketMaxPrice = this.p2pMarketDesign.maxPrice;
         }
         this.askFilterForm.get('maxPrice')!.setValue(this.marketMaxPrice);
-        //TODO include maxAskSize as this would've been in some test data from the data provision service
-        // this.dataProvisionService.getMaxAskSize().subscribe(size => {
-        //   this.maxAskSize = size;
-        // });
       });
     }
     this.bts.unconfirmedAskCommitEmitter.subscribe(newCommits => {

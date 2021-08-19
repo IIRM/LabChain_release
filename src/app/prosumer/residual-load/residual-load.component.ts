@@ -14,8 +14,6 @@ import {SessionDataService} from "../../core/session-data.service";
 })
 
 
-// TODO redraw plot after time progresses --> external market comp
-
 /**
  * Component to display the residual time series of the combined assets of the respective prosumer
  * (i.e. the difference between generation and battery discharge and consumption and battery charge).

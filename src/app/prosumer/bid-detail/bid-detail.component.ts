@@ -11,7 +11,6 @@ import {BlockchainRelayService} from "../../core/interfaceRelayServices/blockcha
   styleUrls: ['./bid-detail.component.css']
 })
 
-// TODO allow for toggling to see with and without fees & levies
 
 /**
  * Component to display the details of a P2PBid and to provide bid commitment / purchase functionality of the detailed bid.
@@ -22,9 +21,7 @@ export class BidDetailComponent implements OnInit {
   @Input() bid!: P2POption;
   /** An EventEmitted for removing the component from the parent element */
   @Output() removeComponent: EventEmitter<any> = new EventEmitter();
-  constructor(private bts: BlockchainRelayService,
-              private sessionData: SessionDataService,
-              private timeService: TimeService) { }
+  constructor(private bts: BlockchainRelayService) { }
 
   ngOnInit() {
   }

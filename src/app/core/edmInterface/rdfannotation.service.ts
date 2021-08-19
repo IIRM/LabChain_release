@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 
-// TODO check how maintainable this class is / how to make it easier to maintain (intuition: very poorly, was done rather adhoc). Maybe move the Primer vocabulary list out and place it in a separate structure?
-
 @Injectable({
   providedIn: 'root'
 })
@@ -176,7 +174,6 @@ export abstract class RDFAnnotationService {
       datasetRawString += ('dcat:theme ' + theme + ';\n');
     }
     if (politicalGeocoding !== undefined) {
-      // TODO why inserting description here???
       datasetRawString += ('dcatde:politicalGeocodingURI "' + politicalGeocoding + '";\n');
     }
     let datasetString = datasetRawString.slice(0, datasetRawString.length - 2);

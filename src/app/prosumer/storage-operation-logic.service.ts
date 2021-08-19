@@ -34,7 +34,6 @@ export class StorageOperationLogicService {
    */
   static schedule(asset: StorageUnit, timeStep: number, dispatchValue: number, currentTime: number) {
     if (timeStep < currentTime) {
-      // TODO throw error and catch it in respective functions
       console.log('tried to (dis)charge ' + asset.model + ' at time ' + timeStep + ' while time has already progressed to ' + currentTime);
       return;
     }

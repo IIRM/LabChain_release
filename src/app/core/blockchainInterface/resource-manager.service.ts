@@ -120,7 +120,6 @@ export class ResourceManagerService {
    * WARNING: if requested multiple times with an empty available pool, distinct promises might resolve to the same resource!!
    * @return Promise resolving to a resource that has not been used on the blockchain yet as soon as possible
    */
-  //TODO fix non-unique promise resolution for multiple requests eventually
   public requestFreeResourcePromise(): Promise<BlockchainResource> {
     this.logger.resourceManagerLog('free resource promise requested', 3);
     //If an availble resource exists, resolve promise immediately upon returning

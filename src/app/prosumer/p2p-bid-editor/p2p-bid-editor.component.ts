@@ -14,8 +14,6 @@ import { TimeService } from 'src/app/core/time.service';
   styleUrls: ['./p2p-bid-editor.component.css']
 })
 
-// TODO Implement bid strategy bot stuff
-
 /**
  * Component to provide the form that can be used to create a new bid in the P2P market
  */

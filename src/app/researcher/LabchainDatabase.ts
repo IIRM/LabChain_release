@@ -159,7 +159,6 @@ export class LabchainDatabase {
         });
       });
     }
-  // TODO do something meaningful
   addExperimentDescription(descriptionToStore: ExperimentDescription): void {
     console.log('Attempting to store ' + descriptionToStore);
   }
@@ -393,15 +392,13 @@ export class LabchainDatabase {
     })
   }
 
-  // todo 120?
   /**
    * returns an observable of the number of time steps in the experiment
    */
   getExperimentLength(): Observable<number> {
-    return of(120);
+    return of(168);
   }
 
-  // todo what's the difference to getExperimentLength
   getexperimentDesignLength(): Observable<number> {
     return of(168);
   }
@@ -530,7 +527,7 @@ export class LabchainDatabase {
   }
 
   getRandomizedLoad(): Load {
-    const model = 'Load1'; // TODO get good description for this?
+    const model = 'Load1';
     const relativeControllability = 0;
     const temporalShiftingCapability = 0;
     const load1 = new Load(model, relativeControllability, temporalShiftingCapability);
@@ -619,7 +616,6 @@ export class LabchainDatabase {
         100);
   }
 
-  // todo needs to be prosumer 1
   getMockProsumer1Instance(id = 1): ProsumerInstance {
     return new ProsumerInstance(
         new Prosumer(id, 'Prosumer1'),
@@ -703,7 +699,7 @@ export class LabchainDatabase {
         100
     );
   }
- // TODO delete?
+
   getMaxBidSize() {
     return of(this.maxBidSize);
   }

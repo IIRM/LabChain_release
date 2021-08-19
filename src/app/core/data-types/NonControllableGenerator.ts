@@ -20,7 +20,6 @@ export class NonControllableGenerator {
     this.powerSeries = generationCurve;
   }
 
-  //TODO delete this logic / data storage
 
   //TODO move the generation profile to somewhere in the researcher module
   public initiateProjectedGeneration(experimentLength: number) {

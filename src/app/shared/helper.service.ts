@@ -19,7 +19,6 @@ export class HelperService {
    *
    * @param arrays Array with entries as the additive aggregate of the provided arrays
    */
-  //TODO include check if more than 1 array is provided?
   aggregateArrays(arrays: number[][]) {
     const aggregatedArrays = Array(arrays[0].length).fill(0);
     const indexRange = Array.from(Array(arrays[0].length).keys());

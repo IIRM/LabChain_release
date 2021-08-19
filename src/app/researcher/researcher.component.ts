@@ -21,7 +21,6 @@ import {ExperimentResultService} from "./experiment-result.service";
  */
 export class ResearcherComponent implements OnInit {
 
-  // TODO settle on experiment description strategy and formalism; make everything consistent with regards to this
   /** The experiment (if the researcher supervises an active experiment) */
   public runningExperiment: ExperimentInstance | undefined;
   /** Toggle variable to indicate which editor the user utilizes */

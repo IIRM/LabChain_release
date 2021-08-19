@@ -47,14 +47,12 @@ export class ResidualLoadService {
 
   }
 
-  // TODO currently only takes into account the non-controllable generators and loads; make dynamic and sensitive to dispatch
   /**
    * Method to calculate the residual load given the respective assets.
    * Aggregates the generation and consumption for the respective assets separately and then calculates the net load for each data point
    *
    * @returns the residual load series as aggregation of the individual generation and consumption of all assets of the respective prosumer instance
    */
-  //TODO urgent & important: consider storage - how? Storage diff array?
   private calculateResidualLoad(): number[] {
     let aggregatedGeneration= Array(this.time.getEndTime() + 1).fill(0);
     let aggregatedLoad = Array(this.time.getEndTime() + 1).fill(0);

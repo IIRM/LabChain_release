@@ -7,7 +7,6 @@ import { ControllableGenerator } from '../core/data-types/ControllableGenerator'
 
 export class CGOperationLogicService {
 
-  // TODO future ramping might start earlier or later but needs to be recalculated in either case!
   constructor() {
   }
 
@@ -137,7 +136,6 @@ export class CGOperationLogicService {
         }
 
         if (startRampingTime < currentTime) {
-          // TODO throw error? --> error handling!
           console.error('ramping start preceeds current time! Start time is ' + diff);
           return;
         }
@@ -167,7 +165,6 @@ export class CGOperationLogicService {
         }
 
         if (startRampingTime < currentTime) {
-          // TODO throw error? --> error handling
           console.error('ramping start preceeds current time!');
           return;
         }

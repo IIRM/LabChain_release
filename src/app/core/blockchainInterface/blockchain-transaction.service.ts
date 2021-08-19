@@ -85,7 +85,6 @@ export class BlockchainTransactionService implements BlockchainInterface{
     this.blockchainSubmission.submitBidCommitment(bidToCommitTo);
     this.unconfirmedBidCommits.add(bidToCommitTo);
     this.unconfirmedBidCommitEmitter.next(this.unconfirmedBidCommits);
-    // TODO think about what could go wrong
     return true;
   }
 
@@ -100,7 +99,6 @@ export class BlockchainTransactionService implements BlockchainInterface{
     this.blockchainSubmission.submitAskCommitment(committedAsk);
     this.unconfirmedAskCommits.add(committedAsk);
     this.unconfirmedAskCommitEmitter.next(this.unconfirmedAskCommits);
-    // TODO think about what could go wrong
     return true;
   }
 
@@ -138,7 +136,6 @@ export class BlockchainTransactionService implements BlockchainInterface{
     return asksToReturn;
   }
 
-  // TODO think about whether this should check whether the prosumer could in theory provide the energy (e.g. via the residual load information) or whether extensive trading is allowed (and what happens upon non-delivery)
   /**
    * Method to submit a bid to the blockchain layer as an open bid.
    * Requires the bid to not have been committed before (i.e. not be in the list of open or committed bids) and to be valid.

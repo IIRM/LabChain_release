@@ -62,7 +62,6 @@ export class SessionDataService {
   public selectBlockchainUsername(user: number): string{
     return ('uni_leipzig' + (user - 310) + '@fokus.fraunhofer.de');
   }
-  //TODO connect to something like the session manager and time service to write out this data
   closeSession(edmInterface: EDMInterface){
     const reducedPaidFees: Array<ReducedTransactionFeeEntry> = this.currentProsumer!.paidFees.map(transactionFee => HelperService.reducedTransactionCaster(transactionFee));
     const prosumerData: ProsumerResults = {

@@ -46,8 +46,7 @@ export class NCGEditorComponent implements OnInit {
   }
 
   ngOnInit() {
-    //TODO uncomment and potentially move back to constructor (problem was that load profile was not set yet (concurrency issue I guess))
-     this.mes.getConfiguredNCGs().subscribe(retrievedNCGs => {
+    this.mes.getConfiguredNCGs().subscribe(retrievedNCGs => {
        this.ncgs = retrievedNCGs;
        this.ncgSubject.next(this.ncgs);
      });

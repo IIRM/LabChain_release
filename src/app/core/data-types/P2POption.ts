@@ -1,6 +1,5 @@
 import { ProsumerInstance } from './ProsumerInstance';
 
-//TODO change documentation: still from the feedin perspective, not changed to be more flexible
 export interface PhysicalTrade {
   /** The time slice where the provider starts to feed in electricity (i.e. the trading partner buys the right for feedin it out) */
   deliveryTime: number;

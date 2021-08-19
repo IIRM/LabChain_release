@@ -10,7 +10,6 @@ import {ProsumerInstance} from "../data-types/ProsumerInstance";
 @Injectable({
   providedIn: 'root'
 })
-//TODO make nice (poor data structured, access to firestore, algorithms, ...)
 export class MockBlockchainService implements BlockchainInterface{
   private askCollection;
   private bidCollection;
@@ -72,7 +71,6 @@ export class MockBlockchainService implements BlockchainInterface{
             if(!this.committedAskIndex.has(currentAsk.id)) {
               //if they have an acceptedParty despite not being in the set of committed ones, they need to be moved
               if (currentAsk.data()['acceptedParty']) {
-                //TODO make sure to make collision resistant or at least check the id fine
                 this.committedAsks.push({
                   id: currentAsk.id,
                   optionCreator: this.deriveProsumer(currentAsk.data()['optionCreator']),
@@ -119,7 +117,6 @@ export class MockBlockchainService implements BlockchainInterface{
       //   });
       //   this.relevantOpenAsksSubject.next(this.openAsks);
       // });
-      //TODO check whether this works as intended
       //Fetch and update bids
       experimentDoc.collection('Bids').snapshotChanges().subscribe(changes => {
         experimentDoc.collection('Bids').get().subscribe(allBids => {

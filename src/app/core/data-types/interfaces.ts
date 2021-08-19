@@ -72,7 +72,5 @@ export interface EDMInterface {
     storeExperimentDescription(experiment: ExperimentDescription, prosumerInstances: Map<number, ProsumerInstance>);
     storeExperimentInstance(instanceOf: ExperimentDescription, tickLength: number, instanceID: number);
 
-    //TODO define prosumer behavior data
-    // storeProsumerBehaviorData(currentProsumer: Prosumer, experimentInstance: ExperimentInstance, prosumerBehaviorData: Object)
     recordData(experimentInstance: ExperimentInstance, prosumerInstance: ProsumerInstance);
 }

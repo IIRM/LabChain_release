@@ -17,7 +17,6 @@ export class AuthenticationInterceptService implements HttpInterceptor{
   //implement the intercept function of the HTTPInterceptor to intercept HTTP requests by cloning the request
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // const started = Date.now();
-    //TODO separate blockchain-related requests and EDM/coordination backend ones
     if (this.session.blockchainToken){
       this.logger.requestInfrastructureLog('Attempting to authorize with token ' + this.session.blockchainToken, 3);
       const authReq = req.clone({

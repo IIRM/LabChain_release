@@ -23,7 +23,6 @@ import {AngularFirestore} from "@angular/fire/firestore";
 export class SessionManagerService {
 
   blockchainPassword = '9bec0d21a9a36e81a476335707e94a04';
-  //TODO AngularFirestore in for convenience; remove eventually
   constructor(private edmConnector: EdmConnectorService,
               private coordinationLayer: SocketioService,
               private blockchain: BlockchainInterfaceSetupService,
@@ -183,7 +182,6 @@ export class SessionManagerService {
    * @param experimentInstanceString The id of the ExperimentInstance to retrieve in the EDM
    * @param experimentParticipantString The id of the Prosumer this client instance is to represent (experiment participant).
    */
-  //TODO check if it can be discarded
   private loadEDMData(experimentDescriptionString: string, experimentInstanceString: string, experimentParticipantString: string) {
     this.edmConnector.loadExperimentDescription(experimentDescriptionString).then(description => {
       //retrieve experimentInstance
@@ -237,7 +235,6 @@ export class SessionManagerService {
     }
   }
 
-  // TODO critical: does this make sense here?
   private initializeProsumerAssets(prosumers: Array<ProsumerInstance>, experimentLength: number){
     prosumers.forEach(currentProsumer => {
       currentProsumer.storage.forEach(currentStorage => {

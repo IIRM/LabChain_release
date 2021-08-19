@@ -102,7 +102,6 @@ export class ProsumerComponent implements OnInit {
     this.currentView = newView;
   }
 
-  //TODO make safer by waiting for confirmation for registration
   private signalReadyness(){
     this.coordinationService.signalReadyness();
     this.ess.readyForExperiment = true;

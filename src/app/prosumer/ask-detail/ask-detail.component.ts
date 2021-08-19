@@ -11,8 +11,6 @@ import {BlockchainRelayService} from "../../core/interfaceRelayServices/blockcha
   styleUrls: ['./ask-detail.component.css']
 })
 
-// TODO allow for toggling to see with and without fees & levies
-
 /**
  * Component to display the details of a P2POption and to provide ask commitment / purchase functionality of the detailed ask.
  * Commitment to the ask emits an event to the parent component to remove the detailed ask from the parent element

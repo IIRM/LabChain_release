@@ -61,9 +61,7 @@ export class EDMHelperService {
    * @param keywords Keywords within the data set
    * @return A string in LD-JSON format with the respective metadata to upload to the EDM
    */
-  //TODO check for format and triples after consulting Ben
   constructDataSetString(description: string, title: string, keywords: Map<string, string[]>) {
-    //TODO check whether the data set name matters (i.e. is part of the URL or will be replaced within the EDM namespace
     const dataSetName = this.getFreeDataSetName();
     const date = new Date();
     let returnString = '"@id":"';
@@ -100,12 +98,10 @@ export class EDMHelperService {
     return returnString;
   }
 
-  //TODO change (probably remove)
   getFreeDataSetName(): string {
     return 'https://test.de/dataset113';
   }
 
-  //TODO change (probably remove)
   getFreeDistribution(dataset: string, mode: number): string {
     return dataset + '/resource/' + mode;
   }
@@ -117,12 +113,10 @@ export class EDMHelperService {
    * @param catalogue The catalogue where the dataset and distribution is found
    */
   getDownloadURL(dataset: string, distribution: string, catalogue: string): string {
-    //TODO put in the right format for the distribution
     this.http.get(this.edmPiveauHubEndpoint + '/distributions/' + distribution + '/' + dataset + '?catalogue=' + catalogue + '&data=true').subscribe(result => {
       result['@graph'].forEach(graphElement => {
         const uriElements: string[] = graphElement['@id'].split('/');
         if (graphElement === 'http://www.w3.org/ns/dcat#Distribution') {
-          //TODO filter for accessURL
           const accessURL = '';
           return accessURL;
         }
@@ -136,7 +130,6 @@ export class EDMHelperService {
    * @param downloadURL The URL where the experimentDescription can be downloaded from
    */
   retrieveExperimentDescription(downloadURL: string): Promise<ExperimentDescription> {
-    //TODO fill in when EDM stable
     return null;
   }
 
@@ -145,7 +138,6 @@ export class EDMHelperService {
    * @param downloadURL The URL where the experimentInstance can be downloaded from
    */
   retrieveExperimentInstance(downloadURL: string): Promise<ExperimentInstance> {
-    //TODO fill in when stable
     return new Promise<ExperimentInstance>(resolve => {
           resolve(null);
     });

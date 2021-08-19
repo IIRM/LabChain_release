@@ -13,7 +13,6 @@ export class LoadOperationLogicService {
    *
    * @param asset Load that is initiated
    */
-  // TODO this needs testing
   static randomizeSLP(profile: number[]) {
     let i;
     let j;
@@ -276,7 +275,7 @@ export class LoadOperationLogicService {
         if (leftBoundary !== timeStep) {
           // shift potential back
           asset.shiftingPotential[leftBoundary][timeStep] -= amountShiftedBack;
-          // asset.scheduledGeneration[timeStep] -= amountShiftedBack; // todo does this still work?
+          // asset.scheduledGeneration[timeStep] -= amountShiftedBack;
           asset.shiftingPotential[leftBoundary][leftBoundary] += amountShiftedBack;
           // asset.scheduledGeneration[leftBoundary] += amountShiftedBack;
 
@@ -301,7 +300,6 @@ export class LoadOperationLogicService {
       asset.shiftingPotential[timeStep][timeStep + 1] = Math.round ((asset.shiftingPotential[timeStep][timeStep + 1] - diff) * 100) / 100;
       asset.powerSeries[timeStep + 1] = Math.round( (asset.powerSeries[timeStep + 1] - diff) * 100) / 100;
     } else {
-      // TODO catch error earlier?
       console.error('tried to shift to non-existing time step');
       return;
     }

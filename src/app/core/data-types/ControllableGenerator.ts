@@ -29,9 +29,6 @@ export class ControllableGenerator extends DispatchableAsset {
     super(model);
   }
 
-  // TODO ngdocheck for change of inputs ngAfterContentChecked oder ngAfterViewChecked
-  // TODO after content checked, set view parameters again
-
   /**
    * Initiates scheduling and ramping arrays.
    *
